@@ -1,65 +1,49 @@
 import styled from "styled-components";
-import { commonColors } from "../Shared/colors";
-
+import { colorPicker, ColorType } from "../Shared/colors";
 interface ButtonProps {
-    color: string,
-    variant: 'outlined' | 'filled',
-    textColor: string,
-    height: string,
-    width: string,
+    variant?: 'outlined' | 'filled',
+    colorType?: ColorType,
+    height?: string,
+    width?: string,
 }
 
-export const Button = styled.button(({ color, variant, textColor, height, width }: Partial<ButtonProps>) => ({
-    backgroundColor: variant === 'outlined' ? 'inherit' : color ? color : commonColors.primary,
-    minHeight: height ? height : '50px',
-    width: width ? width : '200px',
-    borderRadius: '5px',
-    border: 'none',
-    color: textColor ? textColor : 'white',
-    fontSize: '16px',
-    fontWeight: 'bolder',
-    ':disabled': {
-        backgroundColor: 'whitesmoke',
-        color: 'grey'
-    },
-    ':hover': {
-        cursor: 'pointer',
-        color: 'whitesmoke',
-        backgroundColor: '#1976d2'
+export const Button = styled.button`
+    background-color: ${(props: ButtonProps) => props.variant === 'filled' ? props.colorType ? colorPicker(props.colorType) : 'inherit' : 'inherit'};
+    height: ${(props: ButtonProps) => props.height ? props.height : '50px'};
+    width: ${(props: ButtonProps) => props.width ? props.width : '75px'};
+    border-radius: 5px;
+    border: unset;
+    font-size: 16px;
+    font-weight: 700;
+    color: ${(props: ButtonProps) => props.variant === 'outlined' && props.colorType ? colorPicker(props.colorType) : 'white'};
+    &:hover {
+        background-color: ${(props: ButtonProps) => props.variant === 'outlined' ? props.colorType ? colorPicker(props.colorType) : 'inherit' : props.colorType};
+        color: white;
+        cursor: pointer
     }
-}));
+`
 
-interface CardProps {
-    color: string,
-    height: string,
-    width: string,
-    padding: string,
-    margin: string,
-    display: string,
-    alignItems: string,
-    justifyContent: string
-}
 
-export const Card = styled.div(({ color, height, width, margin, padding }: Partial<CardProps>) => ({
-    backgroundColor: color,
-    minHeight: height,
-    minWidth: width,
+export const EmployeeCard = styled.div(() => ({
+    minWidth: '50%',
     borderRadius: '10px',
     boxShadow: '1px 1px 3px grey',
-    margin: margin ? margin : '10px',
-    width: '450px',
-    padding: padding ? padding : '10px',
+    margin: '10px',
+    width: '500px',
+    padding: '10px',
 }))
 
 export const Appbar = styled.nav(() => ({
-    backgroundColor: '#f07705',
+    backgroundColor: 'whitesmoke',
+    // backgroundColor: '#f07705',
     paddingInline: '10px',
     display: 'flex',
+    alignItems: 'center',
     justifyContent: 'space-between'
 }))
 
 export const AppBarText = styled.h3(() => ({
-    color: 'whitesmoke',
+    color: 'black',
     fontFamily: 'sans-serif',
     cursor: 'pointer'
 }))
@@ -96,12 +80,11 @@ export const SpacedContainer = styled.div`
     display: flex;
     justify-content: space-between;
 `
-export const CardButtons = styled.div`
+export const EmployeeActionButtons = styled.div`
     display: flex;
-    justify-content: flex-end;
-    gap: 20px;
+    flex-direction: column;
+    justify-content: center;
     margin-top: 10px;
-    margin-right: 20px
 `
 export const Paper = styled.div`
     box-shadow: 1px 1px 3px grey;
