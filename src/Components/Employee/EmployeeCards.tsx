@@ -36,7 +36,7 @@ const EmployeeCards: React.FC<EmpCardProps> = ({ data }) => {
                             <p>{empData.salary}</p>
                         </div>
                         <EmployeeActionButtons>
-                            <Button variant='outlined' colorType='primary' height='35px' onClick={() => navigate(`/edit-employe?id=${empData._id}`)}>Edit</Button>
+                            <Button variant='outlined' colorType='primary' height='35px' onClick={() => navigate(`/employee-form`, { state: empData })}>Edit</Button>
                             <Button variant='outlined' colorType='error' height='35px' onClick={() => dispatch({ type: DELETE_EMPLOYEE, payload: empData._id })}>Delete</Button>
                         </EmployeeActionButtons>
                     </SpacedContainer>

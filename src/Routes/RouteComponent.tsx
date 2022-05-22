@@ -10,7 +10,7 @@ const RouteComponent = () => {
             <NavBar />
             <Routes>
                 <Route path='/' element={<EmployeeList />} />
-                <Route path='/new-employee' element={<NewEmployeeForm />} />
+                <Route path='/employee-form' element={<NewEmployeeForm />} />
             </Routes>
         </>
     )

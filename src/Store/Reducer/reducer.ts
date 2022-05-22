@@ -15,7 +15,7 @@ const initialState: InitialStateTypes = {
     isLoading: false,
     isSuccess: false
 }
-export const employeeReducer = (state = initialState, action: ActionTypes): any => {
+export const employeeReducer = (state = initialState, action: ActionTypes) => {
     switch (action.type) {
         case "GET_EMPLOYEES":
             return {

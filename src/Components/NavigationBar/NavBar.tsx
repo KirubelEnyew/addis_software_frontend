@@ -16,7 +16,7 @@ const NavBar = () => {
       <Button
         variant='filled'
         colorType='success'
-        onClick={() => { isOnAddRoute() ? navigate('/') : navigate('/new-employee') }}
+        onClick={() => { isOnAddRoute() ? navigate('/') : navigate('/employee-form') }}
         width='150px'>
         {isOnAddRoute() ? '< Go back' : '+ Add Employee'}
       </Button>
