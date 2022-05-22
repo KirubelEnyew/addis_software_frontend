@@ -23,6 +23,25 @@ export const Button = styled.button`
     }
 `
 
+interface AlertProps {
+    alertType?: ColorType
+}
+
+export const Alert = styled.div`
+    font-family: sans-serif;
+    border-radius: 5px;
+    height: 50px;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: white;
+    background-color: ${(props: AlertProps) => props.alertType ? colorPicker(props.alertType) : 'inherit'};
+    `
+// background-color: ${({ alertType }: AlertProps) => alertType && colorPicker(alertType)}
 
 export const EmployeeCard = styled.div(() => ({
     minWidth: '50%',
