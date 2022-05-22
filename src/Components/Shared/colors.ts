@@ -9,3 +9,22 @@ export const commonColors = {
     dark: '#343a40',
     light: '#f8f9fa'
 }
+
+export type ColorType = 'primary' | 'secondary' | 'error' | 'success' | 'warning'
+
+export function colorPicker(type: ColorType) {
+    switch (type) {
+        case 'primary':
+            return commonColors.primary
+        case 'secondary':
+            return commonColors.secondary
+        case 'error':
+            return commonColors.error
+        case 'success':
+            return commonColors.success
+        case 'warning':
+            return commonColors.warning
+        default:
+            return commonColors.info
+    }
+}
