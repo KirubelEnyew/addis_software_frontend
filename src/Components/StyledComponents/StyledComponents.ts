@@ -14,7 +14,8 @@ export const Button = styled.button(({ color, variant, textColor, height, width 
     minHeight: height ? height : '50px',
     width: width ? width : '200px',
     borderRadius: '5px',
-    color: textColor ? textColor : 'whitesmoke',
+    border: 'none',
+    color: textColor ? textColor : 'white',
     fontSize: '16px',
     fontWeight: 'bolder',
     ':disabled': {
@@ -23,7 +24,8 @@ export const Button = styled.button(({ color, variant, textColor, height, width 
     },
     ':hover': {
         cursor: 'pointer',
-        backgroundColor: 'darkblue'
+        color: 'whitesmoke',
+        backgroundColor: '#1976d2'
     }
 }));
 
@@ -100,4 +102,11 @@ export const CardButtons = styled.div`
     gap: 20px;
     margin-top: 10px;
     margin-right: 20px
+`
+export const Paper = styled.div`
+    box-shadow: 1px 1px 3px grey;
+    border-radius: 10px;
+    min-height: 300px;
+    padding: 15px;
+    margin-top: 20px
 `
