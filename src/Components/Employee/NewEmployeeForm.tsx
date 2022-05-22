@@ -1,21 +1,41 @@
-import React, { ChangeEvent, useState } from 'react'
-import { useEffect } from 'react'
+import React, { useEffect, ChangeEvent, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { ADD_EMPLOYEE, IS_ERROR, IS_LOADING, IS_SUCCESS } from '../../Store/Actions'
+import { useLocation } from 'react-router-dom'
+import { EmployeeData } from '../../Api'
+import { ADD_EMPLOYEE, IS_ERROR, IS_LOADING, IS_SUCCESS, UPDATE_EMPLOYEE } from '../../Store/Actions'
 import { InitialStateTypes } from '../../Store/Reducer/reducer'
 import { Alert, Button, CenteredContainer, Paper, TextField } from '../StyledComponents/StyledComponents'
 
 const NewEmployeeForm = () => {
     const [formValues, setFormValues] = useState({ name: '', dateOfBirth: '', salary: 0, gender: 'other' })
+
+    // redux hooks
     const dispatch = useDispatch()
-    const location = useLocation()
-    const navigate = useNavigate()
     const appState = useSelector<InitialStateTypes, InitialStateTypes>((state: InitialStateTypes) => state)
+
+    // react router hooks
+    const location = useLocation()
+    const state = location.state as EmployeeData
+
+    //handlers
     const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
         e.preventDefault()
+        if (location.state) {
+            dispatch({ type: UPDATE_EMPLOYEE, payload: { ...formValues, id: state._id } })
+        }
         dispatch({ type: ADD_EMPLOYEE, payload: formValues })
     }
+
+    // side effects
+    useEffect(() => {
+        const handleRouteData = () => {
+            if (state) {
+                setFormValues(state)
+            }
+        }
+        handleRouteData()
+    }, [location, state])
+
     useEffect(() => {
         const handleStateReset = () => {
             dispatch({ type: IS_ERROR, payload: false })
@@ -26,7 +46,14 @@ const NewEmployeeForm = () => {
     }, [dispatch])
     return (
         <>
-            {appState.isSuccess && navigate('/')}
+            {appState.isSuccess &&
+                <CenteredContainer>
+                    <Alert alertType='success'>
+                        {location.pathname === '/new-employee' ? 'Registered New Employee' : 'Updated Employee Data'}
+                        <Button onClick={() => dispatch({ type: IS_SUCCESS, payload: false })}>X</Button>
+                    </Alert>
+                </CenteredContainer>
+            }
             {appState.isError &&
                 <CenteredContainer>
                     <Alert alertType='error'>
