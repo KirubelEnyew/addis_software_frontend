@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { GET_EMPLOYEES } from '../../Store/Actions'
 import { InitialStateTypes } from '../../Store/Reducer/reducer'
+import Loading from '../Shared/Loading'
 import { Button, CenteredContainer } from '../StyledComponents/StyledComponents'
 import EmployeeCards from './EmployeeCards'
 import { employeeListHeader } from './style'
@@ -34,7 +35,7 @@ const EmployeeList = () => {
                     <EmployeeCards data={appState.data} />
                     :
                     <CenteredContainer>
-                        <h3>Loading...</h3>
+                        <Loading />
                     </CenteredContainer>
                 }
             </div>
