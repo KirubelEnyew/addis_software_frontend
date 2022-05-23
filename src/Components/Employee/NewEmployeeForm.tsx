@@ -100,6 +100,7 @@ const NewEmployeeForm = () => {
                                         id="male"
                                         size={100}
                                         value="male"
+                                        checked={formValues.gender === 'male'}
                                         onChange={(e) => { setFormValues({ ...formValues, gender: e.target.value }) }} />
                                     <label htmlFor="male">Male</label>
                                 </div>
@@ -109,6 +110,7 @@ const NewEmployeeForm = () => {
                                         id="female"
                                         name="gender-group"
                                         value="female"
+                                        checked={formValues.gender === 'female'}
                                         onChange={(e) => { setFormValues({ ...formValues, gender: e.target.value }) }} />
                                     <label htmlFor="female">Female</label>
                                 </div>
@@ -117,6 +119,7 @@ const NewEmployeeForm = () => {
                                         type="radio"
                                         id="other"
                                         name="gender-group"
+                                        checked={formValues.gender === 'other'}
                                         value="other"
                                         onChange={(e) => { setFormValues({ ...formValues, gender: e.target.value }) }} />
                                     <label htmlFor="other">Other</label>
