@@ -4,6 +4,7 @@ interface ButtonProps {
     variant?: 'outlined' | 'filled',
     colorType?: ColorType,
     height?: string,
+    fontWeight?: number,
     width?: string,
 }
 
@@ -14,7 +15,7 @@ export const Button = styled.button`
     border-radius: 5px;
     border: unset;
     font-size: 16px;
-    font-weight: 700;
+    font-weight: ${(props: ButtonProps) => props.fontWeight ? props.fontWeight : 700};
     color: ${(props: ButtonProps) => props.variant === 'outlined' && props.colorType ? colorPicker(props.colorType) : 'white'};
     &:hover {
         background-color: ${(props: ButtonProps) => props.variant === 'outlined' ? props.colorType ? colorPicker(props.colorType) : 'inherit' : props.colorType};
@@ -41,7 +42,16 @@ export const Alert = styled.div`
     color: white;
     background-color: ${(props: AlertProps) => props.alertType ? colorPicker(props.alertType) : 'inherit'};
     `
-// background-color: ${({ alertType }: AlertProps) => alertType && colorPicker(alertType)}
+
+export const Table = styled.table`
+    width: 75vw;
+    font-family: sans-serif
+`
+export const TableRow = styled.tr`
+    &:hover {
+        background-color: whitesmoke
+    }
+`
 
 export const EmployeeCard = styled.div(() => ({
     minWidth: '50%',
@@ -109,19 +119,14 @@ export const CenteredContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: ${(props: CenteredContainerProps)=> props.margin};
-    padding: ${(props: CenteredContainerProps)=> props.padding}
+    margin: ${(props: CenteredContainerProps) => props.margin};
+    padding: ${(props: CenteredContainerProps) => props.padding}
 `
 export const SpacedContainer = styled.div`
     display: flex;
     justify-content: space-between;
 `
-export const EmployeeActionButtons = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 10px;
-`
+
 export const Paper = styled.div`
     box-shadow: 1px 1px 3px grey;
     border-radius: 10px;
