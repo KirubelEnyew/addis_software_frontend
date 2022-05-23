@@ -62,10 +62,19 @@ export const Appbar = styled.nav(() => ({
 }))
 
 export const AppBarText = styled.h3(() => ({
-    color: 'black',
+    color: 'rgba(61,61,61, 0.7)',
     fontFamily: 'sans-serif',
+    fontWeight: '500',
     cursor: 'pointer'
 }))
+
+export const FormLabel = styled.h5(() => ({
+    color: 'rgba(61,61,61, 0.7)',
+    fontFamily: 'sans-serif',
+    fontWeight: '500',
+    margin: '10px',
+}))
+
 interface TypographyProps {
     fontSize: string,
     color: string,
@@ -80,20 +89,28 @@ export const Typography = styled.text(({ color, fontFamily, fontSize }: Partial<
 
 export const TextField = styled.input(() => ({
     borderRadius: '5px',
-    height: '50px',
+    height: '40px',
     width: '450px',
+    backgroundColor: 'white',
     fontSize: '16px',
     paddingLeft: '10px',
     '::placeholder': {
         color: 'grey'
     },
-    borderColor: 'grey'
+    border: 'none'
 }))
+
+interface CenteredContainerProps {
+    padding?: string,
+    margin?: string
+}
 
 export const CenteredContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: ${(props: CenteredContainerProps)=> props.margin};
+    padding: ${(props: CenteredContainerProps)=> props.padding}
 `
 export const SpacedContainer = styled.div`
     display: flex;
@@ -108,6 +125,7 @@ export const EmployeeActionButtons = styled.div`
 export const Paper = styled.div`
     box-shadow: 1px 1px 3px grey;
     border-radius: 10px;
+    background-color: whitesmoke;
     min-height: 300px;
     padding: 15px;
     margin-top: 20px
