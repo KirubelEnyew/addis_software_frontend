@@ -9,7 +9,7 @@ function* handleFetchEmployees() {
         const { data } = response.data
         yield put(setEmployees(data))
     } catch {
-        yield put(setError(true))
+        yield put(setSuccess(false))
     }
 }
 
