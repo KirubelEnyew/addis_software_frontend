@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ActionTypes } from "../Store/Actions"
+import { ActionTypes } from "../Store/Actions/types"
 
 const baseUrl = 'http://localhost:5000/api/employee/'
 

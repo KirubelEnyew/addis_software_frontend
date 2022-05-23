@@ -4,7 +4,7 @@ import { CenteredContainer, Button, Table, TableRow } from '../StyledComponents/
 import '../Shared/style.css'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { DELETE_EMPLOYEE } from '../../Store/Actions'
+import { DELETE_EMPLOYEE } from '../../Store/Actions/types'
 
 interface EmployeeListProps {
     data: EmployeeData[]

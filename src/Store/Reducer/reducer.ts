@@ -1,5 +1,5 @@
 import { EmployeeData } from "../../Api";
-import { ActionTypes } from "../Actions"
+import { ActionTypes } from "../Actions/types"
 
 
 export interface InitialStateTypes {

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { GET_EMPLOYEES } from '../../Store/Actions'
+import { GET_EMPLOYEES } from '../../Store/Actions/types'
 import { InitialStateTypes } from '../../Store/Reducer/reducer'
 import Loading from '../Shared/Loading'
 import { Button, CenteredContainer } from '../StyledComponents/StyledComponents'

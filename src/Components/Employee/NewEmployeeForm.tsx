@@ -2,7 +2,7 @@ import React, { useEffect, ChangeEvent, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { EmployeeData } from '../../Api'
-import { ADD_EMPLOYEE, IS_ERROR, IS_LOADING, IS_SUCCESS, UPDATE_EMPLOYEE } from '../../Store/Actions'
+import { ADD_EMPLOYEE, IS_ERROR, IS_LOADING, IS_SUCCESS, UPDATE_EMPLOYEE } from '../../Store/Actions/types'
 import { InitialStateTypes } from '../../Store/Reducer/reducer'
 import { Alert, Button, CenteredContainer, FormLabel, Paper, TextField } from '../StyledComponents/StyledComponents'
 
