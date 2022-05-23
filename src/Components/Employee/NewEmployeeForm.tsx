@@ -49,7 +49,7 @@ const NewEmployeeForm = () => {
             {appState.isSuccess &&
                 <CenteredContainer>
                     <Alert alertType='success'>
-                        {location.pathname === '/new-employee' ? 'Registered New Employee' : 'Updated Employee Data'}
+                        {state ? 'Updated Employee Data' : 'Registered New Employee'}
                         <Button onClick={() => dispatch({ type: IS_SUCCESS, payload: false })}>X</Button>
                     </Alert>
                 </CenteredContainer>
@@ -57,40 +57,40 @@ const NewEmployeeForm = () => {
             {appState.isError &&
                 <CenteredContainer>
                     <Alert alertType='error'>
-                        Failed to {location.pathname === '/new-employee' ? 'Add New Employee' : 'Update Employee Data'}
+                        Failed to {state ? 'Update Employee Data' : 'Add New Employee'}
                         <Button onClick={() => dispatch({ type: IS_ERROR, payload: false })}>X</Button>
                     </Alert>
                 </CenteredContainer>
             }
-            <CenteredContainer style={{minHeight: '80vh'}}>
+            <CenteredContainer style={{ minHeight: '80vh' }}>
                 <Paper>
                     <form onSubmit={handleSubmit}>
-                        <h3>Register New Employee</h3>
+                        <h3>{state ? 'Update Employee Data' : 'Register New Employee'}</h3>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '10px' }}>
                             <div>
-                            <FormLabel>Employee Name</FormLabel>
-                            <TextField
-                                value={formValues.name}
-                                required={true}
-                                onChange={(e) => { setFormValues({ ...formValues, name: e.target.value }) }}
-                            />
+                                <FormLabel>Employee Name</FormLabel>
+                                <TextField
+                                    value={formValues.name}
+                                    required={true}
+                                    onChange={(e) => { setFormValues({ ...formValues, name: e.target.value }) }}
+                                />
                             </div>
                             <div>
-                            <FormLabel>Birth Date</FormLabel>
-                            <TextField
-                                value={formValues.dateOfBirth}
-                                required={true}
-                                onChange={(e) => { setFormValues({ ...formValues, dateOfBirth: e.target.value }) }}
-                            />
+                                <FormLabel>Birth Date</FormLabel>
+                                <TextField
+                                    value={formValues.dateOfBirth}
+                                    required={true}
+                                    onChange={(e) => { setFormValues({ ...formValues, dateOfBirth: e.target.value }) }}
+                                />
                             </div>
                             <div>
-                            <FormLabel>Salary</FormLabel>
-                            <TextField
-                                value={formValues.salary}
-                                required={true}
-                                type='number'
-                                onChange={(e) => { setFormValues({ ...formValues, salary: parseFloat(e.target.value) }) }}
-                            />
+                                <FormLabel>Salary</FormLabel>
+                                <TextField
+                                    value={formValues.salary}
+                                    required={true}
+                                    type='number'
+                                    onChange={(e) => { setFormValues({ ...formValues, salary: parseFloat(e.target.value) }) }}
+                                />
                             </div>
                             <FormLabel>Gender</FormLabel>
                             <div style={{ display: 'flex', flexDirection: 'row', gap: '10px ' }}>
