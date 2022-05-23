@@ -1,6 +1,6 @@
-export const employeeCardContainer: React.CSSProperties = {
+export const employeeListHeader: React.CSSProperties = { 
     display: 'flex',
-    flexDirection: 'column',
-    maxHeight: '100vh',
-    overflowY: 'auto'
-}
+     justifyContent: 'space-between',
+      padding: '15px',
+       alignItems: 'center'
+     }
