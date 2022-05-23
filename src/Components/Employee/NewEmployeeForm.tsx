@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom'
 import { EmployeeData } from '../../Api'
 import { ADD_EMPLOYEE, IS_ERROR, IS_LOADING, IS_SUCCESS, UPDATE_EMPLOYEE } from '../../Store/Actions'
 import { InitialStateTypes } from '../../Store/Reducer/reducer'
-import { Alert, Button, CenteredContainer, Paper, TextField } from '../StyledComponents/StyledComponents'
+import { Alert, Button, CenteredContainer, FormLabel, Paper, TextField } from '../StyledComponents/StyledComponents'
 
 const NewEmployeeForm = () => {
     const [formValues, setFormValues] = useState({ name: '', dateOfBirth: '', salary: 0, gender: 'other' })
@@ -62,23 +62,37 @@ const NewEmployeeForm = () => {
                     </Alert>
                 </CenteredContainer>
             }
-            <CenteredContainer>
+            <CenteredContainer style={{minHeight: '80vh'}}>
                 <Paper>
                     <form onSubmit={handleSubmit}>
                         <h3>Register New Employee</h3>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '10px' }}>
+                            <div>
+                            <FormLabel>Employee Name</FormLabel>
                             <TextField
                                 value={formValues.name}
                                 required={true}
-                                placeholder='Name'
                                 onChange={(e) => { setFormValues({ ...formValues, name: e.target.value }) }}
                             />
+                            </div>
+                            <div>
+                            <FormLabel>Birth Date</FormLabel>
                             <TextField
                                 value={formValues.dateOfBirth}
                                 required={true}
-                                placeholder='Birth Date'
                                 onChange={(e) => { setFormValues({ ...formValues, dateOfBirth: e.target.value }) }}
                             />
+                            </div>
+                            <div>
+                            <FormLabel>Salary</FormLabel>
+                            <TextField
+                                value={formValues.salary}
+                                required={true}
+                                type='number'
+                                onChange={(e) => { setFormValues({ ...formValues, salary: parseFloat(e.target.value) }) }}
+                            />
+                            </div>
+                            <FormLabel>Gender</FormLabel>
                             <div style={{ display: 'flex', flexDirection: 'row', gap: '10px ' }}>
                                 <div>
                                     <input
@@ -108,15 +122,8 @@ const NewEmployeeForm = () => {
                                     <label htmlFor="other">Other</label>
                                 </div>
                             </div>
-                            <TextField
-                                value={formValues.salary}
-                                required={true}
-                                placeholder='Salary'
-                                type='number'
-                                onChange={(e) => { setFormValues({ ...formValues, salary: parseFloat(e.target.value) }) }}
-                            />
-                            <CenteredContainer>
-                                <Button disabled={appState.isLoading} variant='filled' colorType='primary' width='200px' type='submit'>Submit</Button>
+                            <CenteredContainer margin='25px'>
+                                <Button disabled={appState.isLoading} variant='filled' colorType='primary' width='200px' height='40px' type='submit'>Submit</Button>
                             </CenteredContainer>
                         </div>
                     </form>
