@@ -21,6 +21,10 @@ export const Button = styled.button`
         background-color: ${(props: ButtonProps) => props.variant === 'outlined' ? props.colorType ? colorPicker(props.colorType) : 'inherit' : props.colorType};
         color: white;
         cursor: pointer
+    };
+    &:disabled {
+        background-color: inherit;
+        color: lightgrey
     }
 `
 
