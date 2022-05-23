@@ -1,47 +1,75 @@
 import React from 'react'
 import { EmployeeData } from '../../Api'
-import { CenteredContainer, Button, EmployeeActionButtons, EmployeeCard, SpacedContainer } from '../StyledComponents/StyledComponents'
+import { CenteredContainer, Button, Table, TableRow } from '../StyledComponents/StyledComponents'
 import '../Shared/style.css'
-import { employeeCardContainer } from './style'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { DELETE_EMPLOYEE } from '../../Store/Actions'
 
-interface EmpCardProps {
+interface EmployeeListProps {
     data: EmployeeData[]
 }
 
-const EmployeeCards: React.FC<EmpCardProps> = ({ data }) => {
+const EmployeeCards: React.FC<EmployeeListProps> = ({ data }) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     return (
-        <CenteredContainer style={employeeCardContainer}>
-            {data.map((empData) => (
-                <EmployeeCard key={empData._id}>
-                    <SpacedContainer>
-                        <div>
-                            <h3>Name</h3>
-                            <p>{empData.name}</p>
-                        </div>
-                        <div>
-                            <h3>Birth Date</h3>
-                            <p>{empData.dateOfBirth}</p>
-                        </div>
-                        <div>
-                            <h3>Gender</h3>
-                            <p>{empData.gender}</p>
-                        </div>
-                        <div>
-                            <h3>Salary</h3>
-                            <p>{empData.salary}</p>
-                        </div>
-                        <EmployeeActionButtons>
-                            <Button variant='outlined' colorType='primary' height='35px' onClick={() => navigate(`/employee-form`, { state: empData })}>Edit</Button>
-                            <Button variant='outlined' colorType='error' height='35px' onClick={() => dispatch({ type: DELETE_EMPLOYEE, payload: empData._id })}>Delete</Button>
-                        </EmployeeActionButtons>
-                    </SpacedContainer>
-                </EmployeeCard>
-            ))}
+        <CenteredContainer>
+            <Table>
+                <tr>
+                    <th>Name</th>
+                    <th>Birth Date</th>
+                    <th>Gender</th>
+                    <th>Salary</th>
+                    <th>Actions</th>
+                </tr>
+                {data.map((empData) => (
+                    <TableRow key={empData._id}>
+                        <td>
+                            <CenteredContainer>
+                                <p>{empData.name}</p>
+                            </CenteredContainer>
+                        </td>
+                        <td>
+                            <CenteredContainer>
+                                <p>{empData.dateOfBirth}</p>
+                            </CenteredContainer>
+                        </td>
+                        <td>
+                            <CenteredContainer>
+                                <p>{empData.gender}</p>
+                            </CenteredContainer>
+                        </td>
+                        <td>
+                            <CenteredContainer>
+                                <p>{empData.salary}</p>
+                            </CenteredContainer>
+                        </td>
+                        <td>
+                            <CenteredContainer>
+                                <Button
+                                    variant='outlined'
+                                    colorType='primary'
+                                    height='30px'
+                                    onClick={() => navigate(`/employee-form`, { state: empData })}
+                                    fontWeight={400}
+                                >
+                                    Edit
+                                </Button>
+                                <Button
+                                    variant='outlined'
+                                    colorType='error'
+                                    height='30px'
+                                    onClick={() => dispatch({ type: DELETE_EMPLOYEE, payload: empData._id })}
+                                    fontWeight={400}
+                                >
+                                    Delete
+                                </Button>
+                            </CenteredContainer>
+                        </td>
+                    </TableRow>
+                ))}
+            </Table>
         </CenteredContainer>
     )
 }
