@@ -1,6 +1,7 @@
-import { takeLatest, call, put, SagaReturnType, fork, all } from 'redux-saga/effects'
+import { takeLatest, call, put, SagaReturnType, all } from 'redux-saga/effects'
 import { deleteEmployee, fetchEmployees, registerEmployee, updateEmployee } from '../../Api';
-import { ActionTypes, ADD_EMPLOYEE, DELETE_EMPLOYEE, GET_EMPLOYEES, setEmployees, setError, setLoading, setSuccess, UPDATE_EMPLOYEE } from '../Actions';
+import { setEmployees, setError, setLoading, setSuccess } from '../Actions';
+import { ActionTypes, ADD_EMPLOYEE, DELETE_EMPLOYEE, GET_EMPLOYEES, UPDATE_EMPLOYEE } from '../Actions/types';
 
 function* handleFetchEmployees() {
     yield put(setError(false))
@@ -11,10 +12,6 @@ function* handleFetchEmployees() {
     } catch {
         yield put(setSuccess(false))
     }
-}
-
-function* sagaFetchEmployees() {
-    yield takeLatest(GET_EMPLOYEES, handleFetchEmployees)
 }
 
 function* handleRegisterEmployee(action: ActionTypes) {
@@ -32,10 +29,6 @@ function* handleRegisterEmployee(action: ActionTypes) {
     }
 }
 
-function* sagaRegisterEmployee() {
-    yield takeLatest(ADD_EMPLOYEE, handleRegisterEmployee)
-}
-
 function* handleDeleteEmployee(action: ActionTypes) {
     yield put(setError(false))
     yield put(setSuccess(false))
@@ -50,11 +43,6 @@ function* handleDeleteEmployee(action: ActionTypes) {
         setLoading(false)
     }
 }
-
-function* sagaRemoveEmployee() {
-    yield takeLatest(DELETE_EMPLOYEE, handleDeleteEmployee)
-}
-
 
 function* handleUpdateEmployee(action: ActionTypes) {
     yield put(setError(false))
@@ -71,15 +59,13 @@ function* handleUpdateEmployee(action: ActionTypes) {
     }
 }
 
-function* sagaUpdateEmployee() {
+function* employeeSaga() {
+    yield takeLatest(GET_EMPLOYEES, handleFetchEmployees)
+    yield takeLatest(ADD_EMPLOYEE, handleRegisterEmployee)
+    yield takeLatest(DELETE_EMPLOYEE, handleDeleteEmployee)
     yield takeLatest(UPDATE_EMPLOYEE, handleUpdateEmployee)
 }
 
 export function* watcherSaga() {
-    yield all([
-        fork(sagaFetchEmployees),
-        fork(sagaRegisterEmployee),
-        fork(sagaRemoveEmployee),
-        fork(sagaUpdateEmployee),
-    ])
+    yield all([employeeSaga()])
 }
