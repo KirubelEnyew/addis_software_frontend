@@ -32,15 +32,11 @@ function* handleRegisterEmployee(action: ActionTypes) {
 function* handleDeleteEmployee(action: ActionTypes) {
     yield put(setError(false))
     yield put(setSuccess(false))
-    yield put(setLoading(true))
     try {
         yield call(deleteEmployee, action)
         yield put(setSuccess(true))
     } catch {
         yield put(setError(true))
-    }
-    finally {
-        setLoading(false)
     }
 }
 
@@ -55,7 +51,7 @@ function* handleUpdateEmployee(action: ActionTypes) {
         yield put(setError(true))
     }
     finally {
-        setLoading(false)
+        yield put(setLoading(false))
     }
 }
 
