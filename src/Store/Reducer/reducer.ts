@@ -15,8 +15,25 @@ const initialState: InitialStateTypes = {
     isLoading: false,
     isSuccess: false
 }
+
 export const employeeReducer = (state = initialState, action: ActionTypes) => {
+    const resetState = {
+        ...state,
+        isError: false,
+        isSuccess: false,
+        isLoading: true
+    }
     switch (action.type) {
+        case "ADD_EMPLOYEE":
+            return resetState
+        case "UPDATE_EMPLOYEE":
+            return resetState
+        case "DELETE_EMPLOYEE":
+            return {
+                ...state,
+                isError: false,
+                isSuccess: false
+            }
         case "GET_EMPLOYEES":
             return {
                 ...state,

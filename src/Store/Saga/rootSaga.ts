@@ -15,9 +15,6 @@ function* handleFetchEmployees() {
 }
 
 function* handleRegisterEmployee(action: ActionTypes) {
-    yield put(setError(false))
-    yield put(setSuccess(false))
-    yield put(setLoading(true))
     try {
         yield call(registerEmployee, action)
         yield put(setSuccess(true))
@@ -30,8 +27,6 @@ function* handleRegisterEmployee(action: ActionTypes) {
 }
 
 function* handleDeleteEmployee(action: ActionTypes) {
-    yield put(setError(false))
-    yield put(setSuccess(false))
     try {
         yield call(deleteEmployee, action)
         yield put(setSuccess(true))
@@ -41,9 +36,6 @@ function* handleDeleteEmployee(action: ActionTypes) {
 }
 
 function* handleUpdateEmployee(action: ActionTypes) {
-    yield put(setError(false))
-    yield put(setSuccess(false))
-    yield put(setLoading(true))
     try {
         yield call(updateEmployee, action)
         yield put(setSuccess(true))
