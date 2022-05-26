@@ -30,7 +30,24 @@ interface LoadingActionTypes {
 }
 
 interface SuccessActionTypes {
-    type: typeof IS_SUCCESS, payload: boolean
+    type: typeof IS_SUCCESS,
+    payload: boolean
 }
 
-export type ActionTypes = EmployeeAddActionTypes | EmployeeGetActionTypes | ErrorActionTypes | LoadingActionTypes | SuccessActionTypes
+interface DeleteEmployeeActionTypes {
+    type: typeof DELETE_EMPLOYEE,
+    payload: string
+}
+
+interface UpdateEmployeeActionTypes {
+    type: typeof UPDATE_EMPLOYEE,
+    payload: EmployeeData
+}
+
+export type ActionTypes = EmployeeAddActionTypes |
+    EmployeeGetActionTypes |
+    ErrorActionTypes |
+    LoadingActionTypes |
+    SuccessActionTypes |
+    DeleteEmployeeActionTypes |
+    UpdateEmployeeActionTypes
